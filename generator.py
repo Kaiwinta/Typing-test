@@ -11,13 +11,15 @@ def generate_text(list_letter : str , maxlength : int, maxword : int):
     """
     
     text = ''
-    while len(text)< maxword*maxlength/2:
+    nbmot =0
+    while nbmot < maxword:
         word = ''
         for i in range (randint(3,maxlength)):
             word+= list_letter[randint(0,len(list_letter)-1)]
         #Adding the word to the text with a space
         text += word +"_"
-    return text
+        nbmot+=1
+    return text[:-1]
 
 liste1 = ["a","b","t","j","e","i","w","p"]
 liste2 = ["a","b"]
