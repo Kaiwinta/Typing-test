@@ -10,23 +10,21 @@ def generate_text(list_letter : str , maxlength : int, maxword : int):
     
     """
     
+    #To only have unique letter and avoid easy typing 
+    list_unique_letter = []
+    for i in list_letter:
+        if i not in list_unique_letter:
+            list_unique_letter.append(i)
+
+    #Generation of the random things to type
     text = ''
     nbmot =0
     while nbmot < maxword:
         word = ''
+        #We want at least word with 3 charaters
         for i in range (randint(3,maxlength)):
-            word+= list_letter[randint(0,len(list_letter)-1)]
+            word+= list_unique_letter[randint(0,len(list_unique_letter)-1)]
         #Adding the word to the text with a space
         text += word +"_"
         nbmot+=1
     return text[:-1]
-
-liste1 = ["a","b","t","j","e","i","w","p"]
-liste2 = ["a","b"]
-liste3 = ["a","b","t","j","e"]
-
-
-print(generate_text(liste1,7 , 15))
-print(generate_text(liste2,12,8))
-print(generate_text(liste3,6,13))
-

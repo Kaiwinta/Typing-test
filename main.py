@@ -46,6 +46,10 @@ def page2(frame):
 
 
     def generate():
+        """
+            Objectif:   faire appel la la fonciton generer
+                        bloquer toute tentative qui pourrais ne pas marcher
+        """
         if type(entreeLettre.get()) != str or len(entreeLettre.get())<=0:
             labelText.config(bg='red',text="Merci de mettre des lettres dans 'Lettre du test'")
         else:
@@ -54,21 +58,19 @@ def page2(frame):
                 int(length)
 
                 try :
-                    int(entreeLength.get())
-                    text = generator.generate_text(entreeLettre.get(),int(entreeLength.get()),int(entreeNombre.get()))
-                    labelText.config(bg = palette[3],text=text)
+                    nombre = entreeLength.get()
+                    int(nombre)
+                    if length>=3 and nombre >=2:
+                        text = generator.generate_text(entreeLettre.get(),int(entreeLength.get()),int(entreeNombre.get()))
+                        labelText.config(bg = palette[3],text=text)
+                    else :
+                        labelText.config(bg='red',text="Le nombre de mots doit être >= 2 et la taille >=3")
 
                 except ValueError:
                     labelText.config(bg='red',text="Merci de rentrer un Nombre de mots")
                 
             except ValueError:
                 labelText.config(bg='red',text="Merci de rentrer une taille maximale")
-           
-       
-        
-            
-        
-
 
     frameParametre = tk.Frame(frame, bg= palette[1])
     frameParametre.place(relx=0, rely=0 , relheight=0.2 , relwidth=1)
