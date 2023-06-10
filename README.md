@@ -1,7 +1,8 @@
 # Typing test
-This will be an application of a typing simulator
+This application is a typing simulator
 
 The Objective is to have a tkinter interface with a menu and an Second Page
+I already did a functionnal version but i want a proper interface 
 
 Menu :
     The creator
