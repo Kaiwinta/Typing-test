@@ -1,7 +1,7 @@
 from random import randint
 
 
-def generate_text(list_letter : list , maxlength : int, maxword : int):
+def generate_text(list_letter : str , maxlength : int, maxword : int):
     """
         Variable:
             list_letter : a list of all the letter that the user want to practice 

@@ -1,4 +1,5 @@
 import tkinter as tk
+import generator
 """
     Goal :
         Have a functionnal typing practice application
@@ -9,7 +10,7 @@ import tkinter as tk
 
 def main():
     global palette
-    palette = ["#E9EDC9","#ccd5ae","#FEFAE0"]
+    palette = ["#E9EDC9","#ccd5ae","#FEFAE0","#FAEDCD","#D4A373"]
 
     window = tk.Tk()
     window.geometry("800x450+{}+{}".format(int(window.winfo_screenwidth()/2 - 400), int(window.winfo_screenheight()/2 - 225)))
@@ -34,8 +35,30 @@ def page1(frame):
     labelTitre = tk.Label(frameTitre, text="𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐭𝐨 𝐭𝐲𝐩𝐢𝐧𝐠 𝐩𝐫𝐚𝐜𝐭𝐢𝐜𝐞",font=("actual",15), bg= palette[2])
     labelTitre.place(rely=0.10,relx=0.37)
 
+    def gotopage2():
+        page2(frameBas)
+
+    buttonPage2 = tk.Button(frame , command=gotopage2)
+    buttonPage2.pack()
+
 def page2(frame):
-    print("page3")
+    global palette
+
+
+    def generate():
+        text = generator.generate_text(entreeLettre.get(),int(entreeLength.get()),int(entreeNombre.get()))
+        labelText.config(text=text)
+
+    entreeLettre = tk.Entry(frame)
+    entreeLength = tk.Entry(frame)
+    entreeNombre = tk.Entry(frame)
+    buttonGenerate = tk.Button(frame,command =generate )
+    entreeLength.pack()
+    entreeLettre.pack()
+    entreeNombre.pack()
+    buttonGenerate.pack()
+    labelText = tk.Label(frame, text= "")
+    labelText.pack(side='bottom')
 
 
 if __name__ == "__main__":
