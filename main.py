@@ -1,5 +1,4 @@
 import tkinter as tk
-from PIL import Image, ImageTk
 import generator
 """
     Goal :
@@ -57,14 +56,16 @@ def page1(frame):
     labelImagepalmier2 = tk.Label(frameBas,image=imagepalmier2, bg=palette[0])
     labelImagepalmier2.place(relx=0.75, rely=0.70)
 
-    buttonPage2 = tk.Button(frameBas, command=gotopage2,image=imagebutton,bg = palette[0],)
-    buttonPage2.pack()
+    labelDesciption = tk.Label(frameBas,bg = palette[1])
+    labelDesciption.place(relheight=0.4,relwidth=0.4,relx=0.3,rely=0.1)
+
+    buttonPage2 = tk.Button(frameBas, command=gotopage2,image=imagebutton,bg = palette[0])
+    buttonPage2.place(rely=0.6,relx=0.4)
 
     frame.mainloop()
+
 def page2(frame):
     global palette
-
-    
     def generate():
         """
             Objectif:   faire appel la la fonciton generer
