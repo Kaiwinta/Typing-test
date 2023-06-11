@@ -27,15 +27,10 @@ def main():
 def page1(frame):
     global palette
     imagebutton=tk.PhotoImage(file='Images/button2.png', master=frame)
-
-    imagedino = Image.open('Images/dinosaur.png')
-    photodino = ImageTk.PhotoImage(imagedino)
-    
-    imagepalmier =Image.open('Images/palmier128.png')
-    photopalmier = ImageTk.PhotoImage(imagepalmier)
-
-    imagepalmier2 =Image.open('Images/palmierv2.png')
-    photopalmier2 = ImageTk.PhotoImage(imagepalmier2)
+    imagedino = tk.PhotoImage(file='Images/dinosaur.png')
+    imagepalmier =tk.PhotoImage(file = 'Images/palmier128.png')
+    imagepalmier2 =tk.PhotoImage(file= 'Images/palmierv2.png')
+    imagesouligne = tk.PhotoImage(file= 'Images/underline4.png')
 
     frameTitre = tk.Frame(frame,bg=palette[2])
     frameTitre.place(rely=0.08, relx=0.1, relheight= 0.1 , relwidth=0.8)
@@ -46,17 +41,20 @@ def page1(frame):
     labelTitre = tk.Label(frameTitre, text="𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐭𝐨 𝐭𝐲𝐩𝐢𝐧𝐠 𝐩𝐫𝐚𝐜𝐭𝐢𝐜𝐞",font=("actual",14), bg= palette[2])
     labelTitre.place(rely=0.10,relx=0.33)
 
+    labelImageUnterline = tk.Label(frameTitre,image=imagesouligne,bg = palette[2])
+    labelImageUnterline.place(rely = 0.7 , relx=0.387)
+
     def gotopage2():
         delete(frameBas)
         page2(frameBas)
 
-    labelImagedino = tk.Label(frameBas,image=photodino, bg=palette[0])
+    labelImagedino = tk.Label(frameBas,image=imagedino, bg=palette[0])
     labelImagedino.place(relx=-0.05, rely=0.33)
 
-    labelImagepalmier = tk.Label(frameBas,image=photopalmier, bg=palette[0])
+    labelImagepalmier = tk.Label(frameBas,image=imagepalmier, bg=palette[0])
     labelImagepalmier.place(relx=0.85, rely=0.65)
 
-    labelImagepalmier2 = tk.Label(frameBas,image=photopalmier2, bg=palette[0])
+    labelImagepalmier2 = tk.Label(frameBas,image=imagepalmier2, bg=palette[0])
     labelImagepalmier2.place(relx=0.75, rely=0.70)
 
     buttonPage2 = tk.Button(frameBas, command=gotopage2,image=imagebutton,bg = palette[0],)
