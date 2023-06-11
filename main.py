@@ -26,6 +26,8 @@ def main():
 
 def page1(frame):
     global palette
+    imagebutton=tk.PhotoImage(file='Images/button2.png', master=frame)
+
     imagedino = Image.open('Images/dinosaur.png')
     photodino = ImageTk.PhotoImage(imagedino)
     
@@ -57,7 +59,7 @@ def page1(frame):
     labelImagepalmier2 = tk.Label(frameBas,image=photopalmier2, bg=palette[0])
     labelImagepalmier2.place(relx=0.75, rely=0.70)
 
-    buttonPage2 = tk.Button(frameBas, command=gotopage2,text='Test your skills')
+    buttonPage2 = tk.Button(frameBas, command=gotopage2,image=imagebutton,bg = palette[0],)
     buttonPage2.pack()
 
     frame.mainloop()
