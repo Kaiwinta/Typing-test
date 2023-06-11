@@ -10,8 +10,9 @@ import generator
 """
 
 def main():
+    
     global palette
-    palette = ["#E9EDC9","#ccd5ae","#FEFAE0","#3B7080","#3A5743"]
+    palette = ["#E9EDC9","#ccd5ae","#FEFAE0","#FAEDCD","#3A5743"]
 
     window = tk.Tk()
     window.geometry("800x450+{}+{}".format(int(window.winfo_screenwidth()/2 - 400), int(window.winfo_screenheight()/2 - 225)))
@@ -69,6 +70,7 @@ def page2(frame):
             Objectif:   faire appel la la fonciton generer
                         bloquer toute tentative qui pourrais ne pas marcher
         """
+        global  fautetemp, faute
         if type(entreeLettre.get()) != str or len(entreeLettre.get())<=0:
             labelText.config(bg=palette[3],text="Merci de mettre des lettres dans 'Lettre du test'")
         else:
@@ -82,6 +84,8 @@ def page2(frame):
                     if int(length)>=3 and int(nombre) >=2:
                         text = generator.generate_text(entreeLettre.get(),int(spinLength.get()),int(spinNombre.get()))
                         labelText.config(bg = palette[3],text=text,anchor= "w")
+                        faute = 0
+                        fautetemp = 0
                         
                     else :
                         labelText.config(bg=palette[3],text="Le nombre de mots doit être >= 2 et la taille >=3")
@@ -93,15 +97,21 @@ def page2(frame):
                 labelText.config(bg=palette[3],text="Merci de rentrer une taille maximale")
     
     def userinput(event):
+        global fautetemp,faute
+        
+        if event.keysym == "BackSpace":
+            fautetemp-=1
         if len(event.keysym)==1 or event.keysym == "space":
-            if event.char == labelText.cget("text")[0]:
+            if event.char == labelText.cget("text")[0] and fautetemp <=0:
                 print('on est good')
                 labelText.configure(text=labelText.cget("text")[1:])
                 if len(labelText.cget("text"))==0:
-                    print("fini")   
+                    print("tu as fait ",faute,'faute')
+                entreeUser.configure(textvariable="")   
             else:
-                print("faute")
-
+                faute+=1
+                fautetemp+=1
+        print(fautetemp)
 
 
     frameParametre = tk.Frame(frame, bg= palette[1])
@@ -114,8 +124,8 @@ def page2(frame):
     labelLength = tk.Label(frameParametre, text = "Taille max des mots")
     labelNombre = tk.Label(frameParametre, text = "Nombre de mots")
     entreeLettre = tk.Entry(frameParametre)
-    spinLength = ttk.Spinbox(frameParametre, from_=0, to= 20)
-    spinNombre = ttk.Spinbox(frameParametre, from_=0, to=50)
+    spinLength = ttk.Spinbox(frameParametre, from_=3, to= 20, wrap= True)
+    spinNombre = ttk.Spinbox(frameParametre, from_=3, to=50, wrap=True)
 
     entreeLettre.place(relwidth=0.25 , relheight=0.23 , relx=0.05, rely=0.4)
     spinLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.4)
@@ -130,8 +140,8 @@ def page2(frame):
     entreeUser = tk.Entry(frameBas,bg=palette[2])
     entreeUser.place(relwidth=0.4,relheight=0.1,relx=0.3,rely=0.35)
 
-    labelText = tk.Label(frameBas, text= "Ici sera afficher le texte à copier",bg=palette[1])
-    labelText.place(relwidth=0.4,relheight=0.1,relx=0.3,rely=0.2)
+    labelText = tk.Label(frameBas, text= "Ici sera afficher le texte à copier",font=('actual',19),bg=palette[1],anchor="w")
+    labelText.place(relwidth=0.6,relheight=0.15,relx=0.2,rely=0.2)
 
     entreeUser.bind('<Key>', lambda event: userinput(event))
 def delete(frame):
