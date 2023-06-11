@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import Image, ImageTk
 import generator
 """
     Goal :
@@ -25,7 +26,9 @@ def main():
 
 def page1(frame):
     global palette
-    
+    imagedino = Image.open('Images/dinosaur.png')
+    photodino = ImageTk.PhotoImage(imagedino)
+
     frameTitre = tk.Frame(frame,bg=palette[2])
     frameTitre.place(rely=0.08, relx=0.1, relheight= 0.1 , relwidth=0.8)
     
@@ -38,9 +41,13 @@ def page1(frame):
     def gotopage2():
         page2(frameBas)
 
-    buttonPage2 = tk.Button(frame , command=gotopage2)
+    labelImage = tk.Label(frameBas,image=photodino, bg=palette[0])
+    labelImage.place(relx=-0.05, rely=0.33)
+
+    buttonPage2 = tk.Button(frameBas, command=gotopage2,text='Test your skills')
     buttonPage2.pack()
 
+    frame.mainloop()
 def page2(frame):
     global palette
 
