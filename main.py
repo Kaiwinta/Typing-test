@@ -27,8 +27,8 @@ def page1(frame):
     global palette
     imagebutton=tk.PhotoImage(file='Images/button2.png', master=frame)
     imagedino = tk.PhotoImage(file='Images/dinosaur.png')
-    imagepalmier =tk.PhotoImage(file = 'Images/palmier128.png')
-    imagepalmier2 =tk.PhotoImage(file= 'Images/palmierv2.png')
+    imagepalmier =tk.PhotoImage(file = 'Images/fresepalmier.png')
+    
     imagesouligne = tk.PhotoImage(file= 'Images/underline4.png')
 
     frameTitre = tk.Frame(frame,bg=palette[2])
@@ -51,10 +51,7 @@ def page1(frame):
     labelImagedino.place(relx=-0.05, rely=0.33)
 
     labelImagepalmier = tk.Label(frameBas,image=imagepalmier, bg=palette[0])
-    labelImagepalmier.place(relx=0.85, rely=0.65)
-
-    labelImagepalmier2 = tk.Label(frameBas,image=imagepalmier2, bg=palette[0])
-    labelImagepalmier2.place(relx=0.75, rely=0.70)
+    labelImagepalmier.place(relx=0.35, rely=0.65)
 
     labelDesciption = tk.Label(frameBas,bg = palette[1])
     labelDesciption.place(relheight=0.4,relwidth=0.4,relx=0.3,rely=0.1)
