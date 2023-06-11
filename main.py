@@ -39,6 +39,7 @@ def page1(frame):
     labelTitre.place(rely=0.10,relx=0.37)
 
     def gotopage2():
+        delete(frameBas)
         page2(frameBas)
 
     labelImage = tk.Label(frameBas,image=photodino, bg=palette[0])
@@ -51,7 +52,7 @@ def page1(frame):
 def page2(frame):
     global palette
 
-
+    
     def generate():
         """
             Objectif:   faire appel la la fonciton generer
@@ -80,7 +81,7 @@ def page2(frame):
                 labelText.config(bg='red',text="Merci de rentrer une taille maximale")
 
     frameParametre = tk.Frame(frame, bg= palette[1])
-    frameParametre.place(relx=0, rely=0 , relheight=0.2 , relwidth=1)
+    frameParametre.place(relx=0, rely=0 , relheight=0.25 , relwidth=1)
 
     labelLettre = tk.Label(frameParametre, text = "Lettres du test")
     labelLength = tk.Label(frameParametre, text = "Taille max des mots")
@@ -89,19 +90,22 @@ def page2(frame):
     entreeLength = tk.Entry(frameParametre)
     entreeNombre = tk.Entry(frameParametre)
 
-    entreeLettre.place(relwidth=0.25 , relheight=0.3 , relx=0.05, rely=0.5)
-    entreeLength.place(relwidth=0.25 , relheight=0.3 , relx=0.375, rely=0.5)
-    entreeNombre.place(relwidth=0.25 , relheight=0.3 , relx=0.7, rely=0.5)
-    labelLettre.place(relwidth=0.25 , relheight=0.3 , relx=0.05, rely=0.2)
-    labelLength.place(relwidth=0.25 , relheight=0.3 , relx=0.375, rely=0.2)
-    labelNombre.place(relwidth=0.25 , relheight=0.3 , relx=0.7, rely=0.2)
+    entreeLettre.place(relwidth=0.25 , relheight=0.23 , relx=0.05, rely=0.4)
+    entreeLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.4)
+    entreeNombre.place(relwidth=0.25 , relheight=0.23 , relx=0.7, rely=0.4)
+    labelLettre.place(relwidth=0.25 , relheight=0.23 , relx=0.05, rely=0.17)
+    labelLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.17)
+    labelNombre.place(relwidth=0.25 , relheight=0.23 , relx=0.7, rely=0.17)
 
-    buttonGenerate = tk.Button(frameParametre,command =generate )
-    buttonGenerate.pack()
+    buttonGenerate = tk.Button(frameParametre,command =generate , text="Start test" )
+    buttonGenerate.place(relheight=0.2,relwidth=0.15 , relx=0.425,rely=0.75)
 
     labelText = tk.Label(frame, text= "")
     labelText.pack(side='bottom')
 
+def delete(frame):
+    for widget in frame.winfo_children():
+        widget.destroy() 
 
 if __name__ == "__main__":
     main()
