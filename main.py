@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import generator
 """
     Goal :
@@ -69,40 +70,56 @@ def page2(frame):
                         bloquer toute tentative qui pourrais ne pas marcher
         """
         if type(entreeLettre.get()) != str or len(entreeLettre.get())<=0:
-            labelText.config(bg='red',text="Merci de mettre des lettres dans 'Lettre du test'")
+            labelText.config(bg=palette[3],text="Merci de mettre des lettres dans 'Lettre du test'")
         else:
             try :
-                length = entreeLength.get()
+                length = spinLength.get()
                 int(length)
 
                 try :
-                    nombre = entreeLength.get()
+                    nombre = spinLength.get()
                     int(nombre)
                     if int(length)>=3 and int(nombre) >=2:
-                        text = generator.generate_text(entreeLettre.get(),int(entreeLength.get()),int(entreeNombre.get()))
-                        labelText.config(bg = palette[3],text=text)
+                        text = generator.generate_text(entreeLettre.get(),int(spinLength.get()),int(spinNombre.get()))
+                        labelText.config(bg = palette[3],text=text,anchor= "w")
+                        
                     else :
-                        labelText.config(bg='red',text="Le nombre de mots doit être >= 2 et la taille >=3")
+                        labelText.config(bg=palette[3],text="Le nombre de mots doit être >= 2 et la taille >=3")
 
                 except ValueError:
-                    labelText.config(bg='red',text="Merci de rentrer un Nombre de mots")
+                    labelText.config(bg=palette[3],text="Merci de rentrer un Nombre de mots")
                 
             except ValueError:
-                labelText.config(bg='red',text="Merci de rentrer une taille maximale")
+                labelText.config(bg=palette[3],text="Merci de rentrer une taille maximale")
+    
+    def userinput(event):
+        if len(event.keysym)==1 or event.keysym == "space":
+            if event.char == labelText.cget("text")[0]:
+                print('on est good')
+                labelText.configure(text=labelText.cget("text")[1:])
+                if len(labelText.cget("text"))==0:
+                    print("fini")   
+            else:
+                print("faute")
+
+
 
     frameParametre = tk.Frame(frame, bg= palette[1])
     frameParametre.place(relx=0, rely=0 , relheight=0.25 , relwidth=1)
+
+    frameBas = tk.Frame(frame,bg=palette[0])
+    frameBas.place(relx=0,rely=0.25,relheight=0.75,relwidth=1)
 
     labelLettre = tk.Label(frameParametre, text = "Lettres du test")
     labelLength = tk.Label(frameParametre, text = "Taille max des mots")
     labelNombre = tk.Label(frameParametre, text = "Nombre de mots")
     entreeLettre = tk.Entry(frameParametre)
-    entreeLength = tk.Entry(frameParametre)
-    entreeNombre = tk.Entry(frameParametre)
+    spinLength = ttk.Spinbox(frameParametre, from_=0, to= 20)
+    spinNombre = ttk.Spinbox(frameParametre, from_=0, to=50)
 
     entreeLettre.place(relwidth=0.25 , relheight=0.23 , relx=0.05, rely=0.4)
-    entreeLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.4)
-    entreeNombre.place(relwidth=0.25 , relheight=0.23 , relx=0.7, rely=0.4)
+    spinLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.4)
+    spinNombre.place(relwidth=0.25 , relheight=0.23 , relx=0.7, rely=0.4)
     labelLettre.place(relwidth=0.25 , relheight=0.23 , relx=0.05, rely=0.17)
     labelLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.17)
     labelNombre.place(relwidth=0.25 , relheight=0.23 , relx=0.7, rely=0.17)
@@ -110,9 +127,13 @@ def page2(frame):
     buttonGenerate = tk.Button(frameParametre,command =generate , text="Start test" )
     buttonGenerate.place(relheight=0.2,relwidth=0.15 , relx=0.425,rely=0.75)
 
-    labelText = tk.Label(frame, text= "")
-    labelText.pack(side='bottom')
+    entreeUser = tk.Entry(frameBas,bg=palette[2])
+    entreeUser.place(relwidth=0.4,relheight=0.1,relx=0.3,rely=0.35)
 
+    labelText = tk.Label(frameBas, text= "Ici sera afficher le texte à copier",bg=palette[1])
+    labelText.place(relwidth=0.4,relheight=0.1,relx=0.3,rely=0.2)
+
+    entreeUser.bind('<Key>', lambda event: userinput(event))
 def delete(frame):
     for widget in frame.winfo_children():
         widget.destroy() 

@@ -25,6 +25,6 @@ def generate_text(list_letter : str , maxlength : int, maxword : int):
         for i in range (randint(3,maxlength)):
             word+= list_unique_letter[randint(0,len(list_unique_letter)-1)]
         #Adding the word to the text with a space
-        text += word +"_"
+        text += word +" "
         nbmot+=1
     return text[:-1]
