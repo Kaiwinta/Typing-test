@@ -83,7 +83,7 @@ def page2(frame):
                     int(nombre)
                     if int(length)>=3 and int(nombre) >=2:
                         text = generator.generate_text(entreeLettre.get(),int(spinLength.get()),int(spinNombre.get()))
-                        labelText.config(bg = palette[3],text=text,anchor= "w")
+                        labelText.config(text=text,anchor= "w")
                         faute = 0
                         fautetemp = 0
                         
@@ -100,7 +100,9 @@ def page2(frame):
         global fautetemp,faute
         
         if event.keysym == "BackSpace":
-            fautetemp-=1
+            if fautetemp>0:
+                fautetemp-=1
+            
         if len(event.keysym)==1 or event.keysym == "space":
             if event.char == labelText.cget("text")[0] and fautetemp <=0:
                 print('on est good')
