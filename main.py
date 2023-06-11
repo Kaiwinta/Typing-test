@@ -28,6 +28,12 @@ def page1(frame):
     global palette
     imagedino = Image.open('Images/dinosaur.png')
     photodino = ImageTk.PhotoImage(imagedino)
+    
+    imagepalmier =Image.open('Images/palmier128.png')
+    photopalmier = ImageTk.PhotoImage(imagepalmier)
+
+    imagepalmier2 =Image.open('Images/palmierv2.png')
+    photopalmier2 = ImageTk.PhotoImage(imagepalmier2)
 
     frameTitre = tk.Frame(frame,bg=palette[2])
     frameTitre.place(rely=0.08, relx=0.1, relheight= 0.1 , relwidth=0.8)
@@ -36,14 +42,20 @@ def page1(frame):
     frameBas.place(rely=0.2,relx=0.1,relheight=0.72,relwidth=0.8)
 
     labelTitre = tk.Label(frameTitre, text="𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐭𝐨 𝐭𝐲𝐩𝐢𝐧𝐠 𝐩𝐫𝐚𝐜𝐭𝐢𝐜𝐞",font=("actual",14), bg= palette[2])
-    labelTitre.place(rely=0.10,relx=0.37)
+    labelTitre.place(rely=0.10,relx=0.33)
 
     def gotopage2():
         delete(frameBas)
         page2(frameBas)
 
-    labelImage = tk.Label(frameBas,image=photodino, bg=palette[0])
-    labelImage.place(relx=-0.05, rely=0.33)
+    labelImagedino = tk.Label(frameBas,image=photodino, bg=palette[0])
+    labelImagedino.place(relx=-0.05, rely=0.33)
+
+    labelImagepalmier = tk.Label(frameBas,image=photopalmier, bg=palette[0])
+    labelImagepalmier.place(relx=0.85, rely=0.65)
+
+    labelImagepalmier2 = tk.Label(frameBas,image=photopalmier2, bg=palette[0])
+    labelImagepalmier2.place(relx=0.75, rely=0.70)
 
     buttonPage2 = tk.Button(frameBas, command=gotopage2,text='Test your skills')
     buttonPage2.pack()
@@ -68,7 +80,7 @@ def page2(frame):
                 try :
                     nombre = entreeLength.get()
                     int(nombre)
-                    if length>=3 and nombre >=2:
+                    if int(length)>=3 and int(nombre) >=2:
                         text = generator.generate_text(entreeLettre.get(),int(entreeLength.get()),int(entreeNombre.get()))
                         labelText.config(bg = palette[3],text=text)
                     else :
