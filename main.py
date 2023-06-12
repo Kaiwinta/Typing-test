@@ -55,8 +55,10 @@ def page1(frame):
     labelImagepalmier = tk.Label(frameBas,image=imagepalmier, bg=palette[0])
     labelImagepalmier.place(relx=0.35, rely=0.65)
 
-    labelDesciption = tk.Label(frameBas,bg = palette[1])
-    labelDesciption.place(relheight=0.4,relwidth=0.4,relx=0.3,rely=0.1)
+    textebienvenu = "Welcome in my new project.\n\nI'm Kaiwinta and this is my typing practice\nBefore starting you'll need to either\n enter a text you want to pratice\n or enter my parameters"
+
+    labelDesciption = tk.Label(frameBas,bg = palette[1],text=textebienvenu,font =("actual",10))
+    labelDesciption.place(relheight=0.4,relwidth=0.40,relx=0.3,rely=0.1)
 
     buttonPage2 = tk.Button(frameBas, command=gotopage2,image=imagebutton,bg = palette[0])
     buttonPage2.place(rely=0.6,relx=0.4)
@@ -121,6 +123,18 @@ def page2(frame):
                 fautetemp   += 1
                 labelFaute.config(text = str( fautetemp ))
 
+    def helpuser():
+        global palette
+        helpage = tk.Tk()
+        helpage.geometry("400x225+{}+{}".format(int(helpage.winfo_screenwidth()/2 - 200), int(helpage.winfo_screenheight()/2 - 112.5)))
+        helpage.title('Help Menu')
+        helpage.iconbitmap('Images/keyboard.ico')
+        helpage.resizable(False,False)
+        helpage.bind('<Escape>',lambda e: helpage.destroy())
+        helpage.configure(bg=palette[4])
+        helpage.mainloop()
+
+
 
     frameParametre = tk.Frame(frame, bg= palette[1])
     frameParametre.place(relx=0, rely=0 , relheight=0.25 , relwidth=1)
@@ -153,6 +167,9 @@ def page2(frame):
 
     labelText = tk.Label(frameBas, text= "Ici sera afficher le texte à copier",font=('actual',19),bg=palette[1],anchor="w")
     labelText.place(relwidth=0.6,relheight=0.15,relx=0.2,rely=0.2)
+
+    buttonHelp =  tk.Button(frameBas,command=helpuser,text='help')
+    buttonHelp.pack()
 
     entreeUser.bind('<Key>', lambda event: userinput(event))
 def delete(frame):
