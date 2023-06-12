@@ -64,7 +64,9 @@ def page1(frame):
     frame.mainloop()
 
 def page2(frame):
-    global palette
+    global palette ,fautetemp, faute
+    fautetemp=0
+    faute = 0    
     def generate():
         """
             Objectif:   faire appel la la fonciton generer
@@ -72,7 +74,7 @@ def page2(frame):
         """
         global  fautetemp, faute
         if type(entreeLettre.get()) != str or len(entreeLettre.get())<=0:
-            labelText.config(bg=palette[3],text="Merci de mettre des lettres dans 'Lettre du test'")
+            labelText.config(bg=palette[3],text="Merci de mettre des lettres dans 'Lettre du test'",font=("actual",12))
         else:
             try :
                 length = spinLength.get()
@@ -83,7 +85,8 @@ def page2(frame):
                     int(nombre)
                     if int(length)>=3 and int(nombre) >=2:
                         text = generator.generate_text(entreeLettre.get(),int(spinLength.get()),int(spinNombre.get()))
-                        labelText.config(text=text,anchor= "w")
+                        labelText.config(text=text,anchor= "w", font=("actual",20))
+                        entreeUser.delete(0,'end')
                         faute = 0
                         fautetemp = 0
                         
@@ -102,18 +105,21 @@ def page2(frame):
         if event.keysym == "BackSpace":
             if fautetemp>0:
                 fautetemp-=1
+                labelFaute.config(text=str(fautetemp))
             
-        if len(event.keysym)==1 or event.keysym == "space":
-            if event.char == labelText.cget("text")[0] and fautetemp <=0:
-                print('on est good')
-                labelText.configure(text=labelText.cget("text")[1:])
-                if len(labelText.cget("text"))==0:
+        if len(event.keysym) == 1 or event.keysym == "space":
+
+            if event.char == labelText.cget("text") [0] and fautetemp <= 0:
+
+                labelText.configure( text = labelText.cget( "text" ) [1:])
+                if len( labelText.cget( "text" )) == 0:
+
                     print("tu as fait ",faute,'faute')
-                entreeUser.configure(textvariable="")   
+                   
             else:
-                faute+=1
-                fautetemp+=1
-        print(fautetemp)
+                faute       += 1
+                fautetemp   += 1
+                labelFaute.config(text = str( fautetemp ))
 
 
     frameParametre = tk.Frame(frame, bg= palette[1])
@@ -140,7 +146,10 @@ def page2(frame):
     buttonGenerate.place(relheight=0.2,relwidth=0.15 , relx=0.425,rely=0.75)
 
     entreeUser = tk.Entry(frameBas,bg=palette[2])
-    entreeUser.place(relwidth=0.4,relheight=0.1,relx=0.3,rely=0.35)
+    entreeUser.place(relwidth=0.27,relheight=0.1,relx=0.3,rely=0.35)
+
+    labelFaute = tk.Label(frameBas, bg=palette[2],text=str(fautetemp))
+    labelFaute.place(relwidth=0.1 , relheight=0.1, relx=0.6, rely=0.35)
 
     labelText = tk.Label(frameBas, text= "Ici sera afficher le texte à copier",font=('actual',19),bg=palette[1],anchor="w")
     labelText.place(relwidth=0.6,relheight=0.15,relx=0.2,rely=0.2)
