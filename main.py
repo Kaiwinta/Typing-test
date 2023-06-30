@@ -142,9 +142,9 @@ def page2(frame):
     frameBas = tk.Frame(frame,bg=palette[0])
     frameBas.place(relx=0,rely=0.25,relheight=0.75,relwidth=1)
 
-    labelLettre = tk.Label(frameParametre, text = "Lettres du test")
-    labelLength = tk.Label(frameParametre, text = "Taille max des mots")
-    labelNombre = tk.Label(frameParametre, text = "Nombre de mots")
+    labelLettre = tk.Label(frameParametre, text = "Letter you want to test")
+    labelLength = tk.Label(frameParametre, text = "Max word length")
+    labelNombre = tk.Label(frameParametre, text = "Number of word")
     entreeLettre = tk.Entry(frameParametre)
     spinLength = ttk.Spinbox(frameParametre, from_=3, to= 20, wrap= True)
     spinNombre = ttk.Spinbox(frameParametre, from_=3, to=50, wrap=True)
@@ -165,13 +165,16 @@ def page2(frame):
     labelFaute = tk.Label(frameBas, bg=palette[2],text=str(fautetemp))
     labelFaute.place(relwidth=0.1 , relheight=0.1, relx=0.6, rely=0.35)
 
-    labelText = tk.Label(frameBas, text= "Ici sera afficher le texte à copier",font=('actual',19),bg=palette[1],anchor="w")
+    labelText = tk.Label(frameBas, text= "Here will be the text",font=('actual',19),bg=palette[1])
     labelText.place(relwidth=0.6,relheight=0.15,relx=0.2,rely=0.2)
 
-    buttonHelp =  tk.Button(frameBas,command=helpuser,text='help')
-    buttonHelp.pack()
+    buttonHelp =  tk.Button(frameBas,command=helpuser,text='Help')
+    buttonHelp.place(relheight=0.1 , relwidth=0.1 , relx=0.45 , rely=0.8)
 
     entreeUser.bind('<Key>', lambda event: userinput(event))
+
+
+
 def delete(frame):
     for widget in frame.winfo_children():
         widget.destroy() 
