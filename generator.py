@@ -4,15 +4,20 @@ from random import randint
 def generate_text(list_letter : str , maxlength : int, maxword : int):
     """
         Variable:
-            list_letter : a list of all the letter that the user want to practice 
+            list_letter : a str of all the letter that the user want to practice 
             maxlength  : the maximum length of a word muss be superior as 3
             maxwords : the maximum amout of word in a try muss be superior as 10
     
     """
-    
     #To only have unique letter and avoid easy typing 
     list_unique_letter = []
-    for i in list_letter:
+    print(list_letter)
+
+    if list_letter.lower() == 'all':
+        list_unique_letter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
+    
+    
+    for i in list_letter.lower():
         if i not in list_unique_letter:
             list_unique_letter.append(i)
 

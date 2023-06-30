@@ -109,6 +109,7 @@ def page2(frame):
                 fautetemp-=1
                 labelFaute.config(text=str(fautetemp))
             
+            
         if len(event.keysym) == 1 or event.keysym == "space":
 
             if event.char == labelText.cget("text") [0] and fautetemp <= 0:
@@ -125,14 +126,26 @@ def page2(frame):
 
     def helpuser():
         global palette
-        helpage = tk.Tk()
-        helpage.geometry("400x225+{}+{}".format(int(helpage.winfo_screenwidth()/2 - 200), int(helpage.winfo_screenheight()/2 - 112.5)))
-        helpage.title('Help Menu')
-        helpage.iconbitmap('Images/keyboard.ico')
-        helpage.resizable(False,False)
-        helpage.bind('<Escape>',lambda e: helpage.destroy())
-        helpage.configure(bg=palette[4])
-        helpage.mainloop()
+        helppage = tk.Tk()
+        helppage.geometry("400x225+{}+{}".format(int(helppage.winfo_screenwidth()/2 - 200), int(helppage.winfo_screenheight()/2 - 112.5)))
+        helppage.title('Help Menu')
+        helppage.iconbitmap('Images/keyboard.ico')
+        helppage.resizable(False,False)
+        helppage.bind('<Escape>',lambda e: helppage.destroy())
+        helppage.configure(bg=palette[4])
+
+        mainFrame = tk.Frame(helppage , bg = palette[1])
+        mainFrame.place(relheight=0.8 , relwidth=0.9 , relx=0.05 , rely=0.1)
+
+        helpText = "Before starting you muss enter all the parameter\n The letter are all The letter taht you want to test \nLike 'THUQIE', type 'All' to be tested on all"
+
+
+        helpLabel = tk.Label(mainFrame , bg = palette[1], text= helpText)
+
+
+        helppage.mainloop()
+
+
 
 
 
@@ -156,7 +169,7 @@ def page2(frame):
     labelLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.17)
     labelNombre.place(relwidth=0.25 , relheight=0.23 , relx=0.7, rely=0.17)
 
-    buttonGenerate = tk.Button(frameParametre,command =generate , text="Start test" )
+    buttonGenerate = tk.Button(frameParametre,command =generate , text="Generate test" )
     buttonGenerate.place(relheight=0.2,relwidth=0.15 , relx=0.425,rely=0.75)
 
     entreeUser = tk.Entry(frameBas,bg=palette[2])
@@ -172,7 +185,6 @@ def page2(frame):
     buttonHelp.place(relheight=0.1 , relwidth=0.1 , relx=0.45 , rely=0.8)
 
     entreeUser.bind('<Key>', lambda event: userinput(event))
-
 
 
 def delete(frame):
