@@ -109,7 +109,6 @@ def page2(frame):
                 fautetemp-=1
                 labelFaute.config(text=str(fautetemp))
             
-            
         if len(event.keysym) == 1 or event.keysym == "space":
 
             if event.char == labelText.cget("text") [0] and fautetemp <= 0:
