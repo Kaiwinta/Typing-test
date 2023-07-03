@@ -125,7 +125,7 @@ def page2(frame):
 
     def helpuser():
         global palette
-        helppage = tk.Tk()
+        helppage = tk.Toplevel()
         helppage.geometry("400x225+{}+{}".format(int(helppage.winfo_screenwidth()/2 - 200), int(helppage.winfo_screenheight()/2 - 112.5)))
         helppage.title('Help Menu')
         helppage.iconbitmap('Images/keyboard.ico')
@@ -143,11 +143,14 @@ def page2(frame):
 
 
         helpIntroLabel = tk.Label(mainFrame , bg = palette[1], text= helpIntro)
-        helpIntroLabel.place(relx= 0 , relwidth=1 , rely=0.2 , relheight=0.35)
+        helpIntroLabel.place(relx= 0 , relwidth=1 , rely=0 , relheight=0.35)
+
+        separator = tk.Canvas(mainFrame, bg='black', height=2, highlightthickness=0)
+        separator.place(relx=0, rely=0.35, relwidth=1, relheight=0.02)
 
         helpLabel1 = tk.Label(mainFrame , bg = palette[1], text= helpText1)
-        helpLabel1.place(relx= 0 , relwidth=1 , rely=0.2 , relheight=0.35)
-        
+        helpLabel1.place(relx= 0 , relwidth=1 , rely=0.3 , relheight=0.35)
+
         helpLabel2 = tk.Label(mainFrame , bg = palette[1], text= helpText2)
         helpLabel2.place(relx= 0 , relwidth=1 , rely=0.6 , relheight=0.35)
 
