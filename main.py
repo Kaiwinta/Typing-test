@@ -136,10 +136,20 @@ def page2(frame):
         mainFrame = tk.Frame(helppage , bg = palette[1])
         mainFrame.place(relheight=0.8 , relwidth=0.9 , relx=0.05 , rely=0.1)
 
-        helpText = "Before starting you muss enter all the parameter\n The letter are all The letter taht you want to test \nLike 'THUQIE', type 'All' to be tested on all"
+
+        helpIntro ="Welcome to the help zone where you'll find all the\n explanation needed to use my app perfektly"
+        helpText1 = "Before starting you muss enter all the parameter\n The letter are all The letter that you want to test \nLike 'THUQIE', type 'All' to be tested on all"
+        helpText2 = "There's a number showing next to the place where you type,\nthis one count the error that you need\n to delete before continue typing"
 
 
-        helpLabel = tk.Label(mainFrame , bg = palette[1], text= helpText)
+        helpIntroLabel = tk.Label(mainFrame , bg = palette[1], text= helpIntro)
+        helpIntroLabel.place(relx= 0 , relwidth=1 , rely=0.2 , relheight=0.35)
+
+        helpLabel1 = tk.Label(mainFrame , bg = palette[1], text= helpText1)
+        helpLabel1.place(relx= 0 , relwidth=1 , rely=0.2 , relheight=0.35)
+        
+        helpLabel2 = tk.Label(mainFrame , bg = palette[1], text= helpText2)
+        helpLabel2.place(relx= 0 , relwidth=1 , rely=0.6 , relheight=0.35)
 
 
         helppage.mainloop()
