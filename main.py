@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 import generator
+import winsound 
+from pydub import AudioSegment
+from pydub.playback import play
+
 """
     Goal :
         Have a functionnal typing practice application
@@ -113,6 +117,9 @@ def page2(frame):
 
             if event.char == labelText.cget("text") [0] and fautetemp <= 0:
 
+                sound = AudioSegment.from_wav('Sound/keypressed.wav')
+                play(sound)
+
                 labelText.configure( text = labelText.cget( "text" ) [1:])
                 if len( labelText.cget( "text" )) == 0:
 
@@ -190,10 +197,15 @@ def page2(frame):
     labelText = tk.Label(frameBas, text= "Here will be the text",font=('actual',19),bg=palette[1])
     labelText.place(relwidth=0.6,relheight=0.15,relx=0.2,rely=0.2)
 
+
+    #Adding an help
     buttonHelp =  tk.Button(frameBas,command=helpuser,text='Help')
     buttonHelp.place(relheight=0.1 , relwidth=0.1 , relx=0.45 , rely=0.8)
 
     entreeUser.bind('<Key>', lambda event: userinput(event))
+
+
+    
 
 
 def delete(frame):
