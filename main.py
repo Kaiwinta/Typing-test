@@ -2,8 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 import generator
 import winsound 
-from pydub import AudioSegment
-from pydub.playback import play
 
 """
     Goal :
@@ -71,6 +69,7 @@ def page1(frame):
 
 def page2(frame):
     global palette ,fautetemp, faute
+    filename = 'Sound/keypressed.wav'
     fautetemp=0
     faute = 0    
     def generate():
@@ -117,8 +116,8 @@ def page2(frame):
 
             if event.char == labelText.cget("text") [0] and fautetemp <= 0:
 
-                sound = AudioSegment.from_wav('Sound/keypressed.wav')
-                play(sound)
+                
+                winsound.PlaySound(filename, winsound.SND_FILENAME)
 
                 labelText.configure( text = labelText.cget( "text" ) [1:])
                 if len( labelText.cget( "text" )) == 0:
