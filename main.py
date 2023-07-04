@@ -145,9 +145,6 @@ def page2(frame):
         helpIntroLabel = tk.Label(mainFrame , bg = palette[1], text= helpIntro)
         helpIntroLabel.place(relx= 0 , relwidth=1 , rely=0 , relheight=0.35)
 
-        separator = tk.Canvas(mainFrame, bg='black', height=2, highlightthickness=0)
-        separator.place(relx=0, rely=0.35, relwidth=1, relheight=0.02)
-
         helpLabel1 = tk.Label(mainFrame , bg = palette[1], text= helpText1)
         helpLabel1.place(relx= 0 , relwidth=1 , rely=0.3 , relheight=0.35)
 
