@@ -6,9 +6,11 @@ I already did a functionnal version but i want a proper interface
 
 Menu :
     The creator
-    The tittle of the project
+    The title of the project
     The access to the second page
 
 Second Page:
     A text Generator 
     Saving the result into a .txt files
+
+The savong actually dont works but it will come soon
