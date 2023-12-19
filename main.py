@@ -111,7 +111,7 @@ def page2(frame):
             if fautetemp>0:
                 fautetemp-=1
                 labelFaute.config(text=str(fautetemp))
-            
+            in
         if len(event.keysym) == 1 or event.keysym == "space":
 
             if event.char == labelText.cget("text") [0] and fautetemp <= 0:
@@ -175,7 +175,7 @@ def page2(frame):
     labelNombre = tk.Label(frameParametre, text = "Number of word")
     entreeLettre = tk.Entry(frameParametre)
     spinLength = ttk.Spinbox(frameParametre, from_=3, to= 20, wrap= True)
-    spinNombre = ttk.Spinbox(frameParametre, from_=3, to=50, wrap=True)
+    spinNombre = ttk.Spinbox(frameParametre, from_=3, to= 50, wrap=True)
 
     entreeLettre.place(relwidth=0.25 , relheight=0.23 , relx=0.05, rely=0.4)
     spinLength.place(relwidth=0.25 , relheight=0.23 , relx=0.375, rely=0.4)
